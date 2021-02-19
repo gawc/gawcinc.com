@@ -1,65 +1,174 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import React from "react";
+import Head from "next/head";
+import Image from "next/image";
+import { useKeenSlider } from "keen-slider/react";
+import "keen-slider/keen-slider.min.css";
 
 export default function Home() {
+  const [pause, setPause] = React.useState(false)
+  const timer = React.useRef()
+  const [sliderRef, slider] = useKeenSlider({
+    loop: false,
+    duration: 1000,
+    dragStart: () => {
+      setPause(true)
+    },
+    dragEnd: () => {
+      setPause(false)
+    },
+  })
+
+  React.useEffect(() => {
+    sliderRef.current.addEventListener("mouseover", () => {
+      setPause(true)
+    })
+    sliderRef.current.addEventListener("mouseout", () => {
+      setPause(false)
+    })
+  }, [sliderRef])
+
+  React.useEffect(() => {
+    timer.current = setInterval(() => {
+      if (!pause && slider) {
+        slider.next()
+      }
+    }, 4000)
+    return () => {
+      clearInterval(timer.current)
+    }
+  }, [pause, slider])
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+    <>
+      <div ref={sliderRef} className="keen-slider">
+        <div className="keen-slider__slide number-slide1">
+          <Image
+            src="/everything-under-the-sun-2021/vertical-slides/zero-edge-guy.png"
+            alt="Zero Edge Guy"
+            layout="fill"
+          />
         </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
+        <div className="keen-slider__slide number-slide2">
+          <Image
+            src="/everything-under-the-sun-2021/vertical-slides/jon.png"
+            alt="Jon Howland"
+            width={1080}
+            height={1920}
+          />
+        </div>
+        <div className="keen-slider__slide number-slide3">
+          <Image
+            src="/everything-under-the-sun-2021/vertical-slides/aqua-zero-edge.png"
+            alt="Aqua Zero Edge"
+            width={1080}
+            height={1920}
+          />
+        </div>
+        <div className="keen-slider__slide number-slide4">
+          <Image
+            src="/everything-under-the-sun-2021/vertical-slides/mike-jackson.png"
+            alt="Mike"
+            width={1080}
+            height={1920}
+          />
+        </div>
+        <div className="keen-slider__slide number-slide5">
+          <Image
+            src="/everything-under-the-sun-2021/vertical-slides/aqua-turf-edge.png"
+            alt="Aqua Turf Edge"
+            width={1080}
+            height={1920}
+          />
+        </div>
+        <div className="keen-slider__slide number-slide6">
+          <Image
+            src="/everything-under-the-sun-2021/vertical-slides/valerie.png"
+            alt="Valerie"
+            width={1080}
+            height={1920}
+          />
+        </div>
+        <div className="keen-slider__slide number-slide7">
+          <Image
+            src="/everything-under-the-sun-2021/vertical-slides/aqua-spout-extreme.png"
+            alt="Aqua Spout Extreme"
+            width={1080}
+            height={1920}
+          />
+        </div>
+        <div className="keen-slider__slide number-slide8">
+          <Image
+            src="/everything-under-the-sun-2021/vertical-slides/irvine.png"
+            alt="Irvine"
+            width={1080}
+            height={1920}
+          />
+        </div>
+        <div className="keen-slider__slide number-slide9">
+          <Image
+            src="/everything-under-the-sun-2021/vertical-slides/aqua-storm.png"
+            alt="Aqua Storm"
+            width={1080}
+            height={1920}
+          />
+        </div>
+        <div className="keen-slider__slide number-slide10">
+          <Image
+            src="/everything-under-the-sun-2021/vertical-slides/lynsey.png"
+            alt="Lynsey"
+            width={1080}
+            height={1920}
+          />
+        </div>
+        <div className="keen-slider__slide number-slide11">
+          <Image
+            src="/everything-under-the-sun-2021/vertical-slides/aqua-spout.png"
+            alt="Jon Howland"
+            width={1080}
+            height={1920}
+          />
+        </div>
+        <div className="keen-slider__slide number-slide12">
+          <Image
+            src="/everything-under-the-sun-2021/vertical-slides/aqua-sheer.png"
+            alt="Aqua Sheer"
+            width={1080}
+            height={1920}
+          />
+        </div>
+        <div className="keen-slider__slide number-slide12">
+          <Image
+            src="/everything-under-the-sun-2021/vertical-slides/theresa.png"
+            alt="Thersea"
+            width={1080}
+            height={1920}
+          />
+        </div>
+        <div className="keen-slider__slide number-slide13">
+          <Image
+            src="/everything-under-the-sun-2021/vertical-slides/aqua-rain.png"
+            alt="Aqua Rain"
+            width={1080}
+            height={1920}
+          />
+        </div>
+        <div className="keen-slider__slide number-slide14">
+          <Image
+            src="/everything-under-the-sun-2021/vertical-slides/matt.png"
+            alt="Matt"
+            width={1080}
+            height={1920}
+          />
+        </div>
+        <div className="keen-slider__slide number-slide15">
+          <Image
+            src="/everything-under-the-sun-2021/vertical-slides/denise.png"
+            alt="Denise"
+            width={1080}
+            height={1920}
+          />
+        </div>
+      </div>
+    </>
   )
 }
